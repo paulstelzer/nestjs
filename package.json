@@ -1,5 +1,6 @@
 {
   "name": "nestjs",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "workspaces": [
@@ -10,45 +11,69 @@
     "@nestjs/core": "^7.4.4",
     "@nestjs/platform-express": "^7.4.4",
     "reflect-metadata": "^0.1.13",
-    "nodemailer": "^6.4.11"
+    "nodemailer": "^6.4.11",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.6.2"
   },
   "devDependencies": {
+    "@nestjs/cli": "^7.5.1",
+    "@nestjs/schematics": "^7.1.1",
     "@nestjs/testing": "^7.4.4",
     "@types/express": "^4.17.8",
-    "@types/jest": "^26.0.13",
+    "@types/jest": "26.0.13",
     "@types/node": "^14.6.4",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
+    "@types/supertest": "^2.0.10",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.8.1",
+    "eslint": "7.8.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
     "jest": "^26.4.2",
-    "jest-junit": "^11.1.0",
     "lerna": "^3.22.1",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^26.3.0",
+    "prettier": "^2.1.1",
+    "supertest": "^4.0.2",
+    "ts-jest": "26.3.0",
+    "ts-loader": "^8.0.3",
+    "ts-node": "9.0.0",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^4.0.2"
   },
   "scripts": {
+    "prenestbuild": "rimraf dist",
+    "nestbuild": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
     "lerna:publish": "lerna run build && lerna publish -m 'chore: publish'",
     "lerna:prerelease": "lerna run build && lerna publish prerelease --preid rc -m 'chore: publish prerelease'",
     "build": "lerna run build",
     "build:watch": "lerna run --parallel build:watch",
     "clean": "rimraf packages/**/lib",
-    "test": "jest"
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "jest": {
-    "preset": "ts-jest",
-    "transform": {
-      "^.+\\.(t)sx?$": "ts-jest"
-    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
     "projects": [
       "<rootDir>/packages/*"
     ],
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "tsconfig.spec.json"
-      }
-    }
-  },
-  "version": "1.0.0"
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
 }

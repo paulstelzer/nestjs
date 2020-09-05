@@ -38,6 +38,8 @@
   },
   "dependencies": {
   },
+  "devDependencies": {
+  },
   "bugs": {
     "url": "https://github.com/paulstelzer/nestjs/issues"
   },

@@ -2,20 +2,17 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
-    "declarationMap": true,
-    "noImplicitAny": false,
-    "removeComments": false,
-    "strict": true,
-    "strictNullChecks": true,
-    "noLib": false,
+    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "sourceMap": true,
-    "lib": ["es7"],
-    "baseUrl": "./src",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
     "paths": {
-      "@golevelup/*": ["./*/src"]
+      "@innomobile/*": ["./*/src"]
     }
   },
   "exclude": ["node_modules"]
