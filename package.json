@@ -1,0 +1,53 @@
+{
+  "name": "nestjs",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "@nestjs/common": "^7.4.4",
+    "@nestjs/core": "^7.4.4",
+    "@nestjs/platform-express": "^7.4.4",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^7.4.4",
+    "@types/express": "^4.17.8",
+    "@types/jest": "^26.0.13",
+    "@types/node": "^14.6.4",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.8.1",
+    "jest": "^26.4.2",
+    "jest-junit": "^11.1.0",
+    "lerna": "^3.22.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "lerna:publish": "lerna run build && lerna publish -m 'chore: publish'",
+    "lerna:prerelease": "lerna run build && lerna publish prerelease --preid rc -m 'chore: publish prerelease'",
+    "build": "lerna run build",
+    "build:watch": "lerna run --parallel build:watch",
+    "clean": "rimraf packages/**/lib",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "transform": {
+      "^.+\\.(t)sx?$": "ts-jest"
+    },
+    "projects": [
+      "<rootDir>/packages/*"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.spec.json"
+      }
+    }
+  },
+  "version": "1.0.0"
+}
