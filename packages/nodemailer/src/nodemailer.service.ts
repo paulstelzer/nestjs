@@ -1,6 +1,7 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {createTransport, SendMailOptions, SentMessageInfo, Transporter} from 'nodemailer';
 import {NodemailerConfigModel} from './nodemailer-config.model';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 @Injectable()
 export class NodemailerService {
@@ -17,7 +18,7 @@ export class NodemailerService {
     this.setupTransporter(this.config.transport, this.config.defaults, this.config.templateDir);
   }
 
-  private setupTransporter(transport: any, defaults?: any, templateDir?: string): void {
+  private setupTransporter(transport: SMTPTransport | SMTPTransport.Options | string, defaults?: SMTPTransport.Options, templateDir?: string): void {
     this.transporter = createTransport(transport, defaults);
   }
 
