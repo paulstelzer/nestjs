@@ -1,4 +1,4 @@
-import {NodemailerConfigModel} from '../lib';
+import {NodemailerConfigModel} from './nodemailer-config.model';
 
 const mailerExampleConfig: NodemailerConfigModel = {
   transport: {
