@@ -1,7 +1,8 @@
-import {DynamicModule, Module} from '@nestjs/common';
+import {DynamicModule, Global, Module} from '@nestjs/common';
 import {NodemailerService} from './nodemailer.service';
 import {NodemailerConfigModel} from './nodemailer-config.model';
 
+@Global()
 @Module({
   imports: [],
   controllers: [],
