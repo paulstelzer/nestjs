@@ -36,3 +36,5 @@ junit.xml
 
 # Packages lib
 packages/*/lib
+tsconfig.build.tsbuildinfo
+
